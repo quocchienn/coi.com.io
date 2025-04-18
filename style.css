@@ -1,0 +1,106 @@
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #181818;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 { margin-top: 20px; }
+    input, button {
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 8px;
+      border: none;
+    }
+    input {
+      background: #2a2a2a;
+      color: white;
+    }
+    button {
+      background: #007aff;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #339cff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 60px);
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .cell {
+      width: 60px;
+      height: 60px;
+      background: #2b2b2b;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 22px;
+      transition: 0.3s;
+    }
+    .cell.revealed {
+      background: #30d158;
+      transform: scale(1.1);
+    }
+    .cell.bomb {
+      background: #ff3b30;
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+    }
+    .popup {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e1e1e;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s;
+      z-index: 999;
+    }
+    .popup.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #qrContainer, #withdrawForm {
+      display: none;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(5, 45px);
+        gap: 8px;
+      }
+      .cell {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+      input, button {
+        width: 90%;
+        margin: 6px auto;
+        display: block;
+        font-size: 16px;
+      }
+      #authSection, #userPanel, .controls {
+        padding: 10px;
+      }
+    }
+  

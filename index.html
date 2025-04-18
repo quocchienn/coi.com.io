@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<title>Mines Game Pro</title>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<h1>Mines Game Pro</h1>
+<div id="authSection">
+<input id="username" placeholder="Tên đăng nhập" type="text"/>
+<input id="password" placeholder="Mật khẩu" type="password"/>
+<button onclick="register()">Đăng ký</button>
+<button onclick="login()">Đăng nhập</button>
+</div>
+<div id="userPanel" style="display:none;">
+<strong>Xin chào, <span id="currentUser"></span></strong>
+<button onclick="updatePlayersOnline('leave'); logout();">Đăng xuất</button>
+</div>
+<div class="controls">
+<div><strong>Số dư:</strong> <span id="balance">0</span> VND</div>
+<div>
+<label>Số mìn: <input id="minesCount" max="24" min="1" type="number" value="3"/></label>
+<label>Tiền cược: <input id="betAmount" min="1500" type="number" value="1500"/></label><br/>
+<button onclick="updatePlayersOnline('join'); startGame()">Bắt đầu</button>
+<button onclick="cashOut(); updatePlayersOnline('leave');">Rút thưởng</button>
+<button onclick="showQRCode()">Quét mã nạp</button>
+<button onclick="showWithdrawForm()">Rút</button>
+<button onclick="mockTopup()">Nạp 100,000 VND</button>
+<div id="status">Chưa chơi</div>
+<div id="chanceInfo">Tỉ lệ gặp bom: -</div>
+</div>
+<div id="qrContainer">
+<img src="https://img.vietqr.io/image/VCB-0123456789-compact2.png" width="200"/><br/>
+<p>Quét mã để nạp tiền vào tài khoản</p>
+</div>
+<div id="withdrawForm">
+<input id="bankName" placeholder="Tên ngân hàng" type="text"/><br/>
+<input id="bankAccount" placeholder="Số tài khoản" type="text"/><br/>
+<input id="withdrawAmount" min="50000" placeholder="Số tiền muốn rút" type="number"/><br/>
+<button onclick="submitWithdraw()">Gửi yêu cầu rút</button>
+</div>
+</div>
+<div class="grid" id="grid"></div>
+<div class="popup" id="popup"></div>
+<div id="betHistoryPanel" style="position: fixed; bottom: 20px; right: 20px; background: #1e1e1e; padding: 10px 15px; border-radius: 10px; z-index: 1000; max-width: 250px;">
+<h3 style="margin: 5px 0;">Lịch sử cược</h3>
+<ul id="betHistory" style="padding-left: 20px; text-align: left; font-size: 14px; max-height: 200px; overflow-y: auto;"></ul>
+</div>
+<div id="cornerPanel" style="position: fixed; top: 20px; right: 20px; background: #1e1e1e; padding: 10px 15px; border-radius: 10px; z-index: 1000; max-width: 220px;">
+<div id="leaderboard">
+<h3 style="margin: 5px 0;">Bảng xếp hạng</h3>
+<ol id="leaderboardList" style="padding-left: 20px; text-align: left; font-size: 14px;"></ol>
+</div>
+<div id="multiplayerStatus" style="margin-top: 10px;">
+<h3 style="margin: 5px 0;">Người đang chơi</h3>
+<ul id="playersOnline" style="padding-left: 20px; text-align: left; font-size: 14px;"></ul>
+</div>
+</div>
+<audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_9ebfcfbeb2.mp3?filename=button-124476.mp3"></audio>
+<audio id="bombSound" src="https://cdn.pixabay.com/download/audio/2022/03/03/audio_f1b2d7bfa2.mp3?filename=wrong-47985.mp3"></audio>
+<audio id="cashSound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_02e8ac54b4.mp3?filename=success-1-6297.mp3"></audio>
+
+<script src="main.js"></script></body>
+</html>
